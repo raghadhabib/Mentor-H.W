@@ -1,0 +1,11 @@
+Your arrow function has curly braces {}, which means it's a block body. When you use a block body, you need to explicitly write return. Without it, the function returns undefined for every user, and filter treats that as falsy — so nothing gets kept.
+
+// ❌ Your version — no return, so filter gets nothing
+const AdultActive = users.filter((user) => {
+    (user.active == true) && (user.age >= 18);  // result is just... dropped
+});
+
+// ✅ Fix — add return
+const AdultActive = users.filter((user) => {
+    return (user.active == true) && (user.age >= 18);
+});
