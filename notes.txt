@@ -9,3 +9,62 @@ const AdultActive = users.filter((user) => {
 const AdultActive = users.filter((user) => {
     return (user.active == true) && (user.age >= 18);
 });
+
+///////////////////////////////////////////////
+
+reduce takes two parameters in the callback:
+
+accumulator — the running total you're building up
+current — the current item in the array
+
+jsusers.reduce((accumulator, current) => ...)
+
+const activeCount = users.reduce((count, user) => {
+  if (user.active) {
+    return count + 1;  // user is active, add 1
+  }
+  return count;        // not active, keep count as is
+}, 0);  // ← start counting from 0
+
+console.log("Active:", activeCount); // 3
+The 0 at the end is the initial value — you're telling reduce "start my counter at zero." Without it, reduce uses the first item as the accumulator, which here would be a user object, not a number.
+
+
+if i say return count ++ what happend
+
+count++ is a post-increment — it returns the value before adding 1.
+
+So return count++ returns the old value and the +1 is thrown away:
+
+js
+// With return count++
+count = 0
+Sara  → active ✅ → returns 0  (count becomes 1 but too late, 0 was already returned)
+Ali   → not active ❌ → returns 0
+Lena  → active ✅ → returns 0
+...
+
+// Final result: 0 ❌ wrong!
+
+///////////////////////
+Problem 1 — no initial value
+Remember the 0 we passed at the end last time? Here instead of starting at 0, you need to start with an empty object that has two arrays:
+js}, { adults: [], minors: [] }) // ← start here
+
+//////////////////
+flat :
+Create a new array with one sub-array element concatenated:
+
+const myArr = [1, 2, [3, [4, 5, 6], 7], 8];
+
+const newArr = myArr.flat(1);
+
+//////////
+did not get it 
+const myArr = [ [ [1,2],[3,4] ] ] 
+
+const newArr = myArr.flat(2); // should be like this [1,2],[3,4] , start flat level from inside to out or from out to inside?
+
+
+//////////////
+flatMap not **flatmap**

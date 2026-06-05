@@ -50,16 +50,47 @@ const AdultActive = users.filter((user)=>{
 console.log(AdultActive);
 
 // From numbers, calculate the sum of all numbers.
+const sumNums = numbers.reduce((total,current)=>total+current)
+console.log("summation is",sumNums);
+
+
 // From users, count how many are active (result should be a number).
+const ActiveUsersReduse = users.reduce((tot,current) => { 
+        if(current.active){
+            return tot+1; //tot ++ gives 0 - return dosent wait
+        }  
+        return tot;
+},0);
+console.log("Actived", ActiveUsersReduse);
+
+
 // From users, build an object that groups names by adult status — like:
 // { adults: ["Ali", "Lena", "Nour"], minors: ["Sara", "Omar"] }
 
+const groupsNames = users.reduce((acc, user)=>{
+    if(user.age >= 18){
+        acc.adults.push(user.name);
+    }
+    else{
+        acc.minors.push(user.name);
+    }
+    return acc;
+},{ adults: [], minors: [] })
+
+console.log(groupsNames);
+
 
 // From orders, get a flat array of all items across every order.
+const flatted = orders.flatMap((order)=>order.items);
+console.log(flatted)
+
 // From numbers, use flatMap to produce a new array where each number appears twice — e.g. [1, 1, 2, 2, 3, 3, ...].
+const twices = numbers.flatMap((num)=>[num,num])
+console.log(twices);
 
-
-//  Bonus — chain them together
 
 // From users, get the names of active adults only — as a sorted array of strings.
+
 // From orders, get all unique items across all orders (no duplicates).
+
+
